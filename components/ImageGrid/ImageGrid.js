@@ -1,7 +1,7 @@
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
 import { db } from '../../firebase'
-
+import {motion} from "framer-motion"
 const ImageGrid = ({setSelectImage}) => {
 
     const [docs,setDocs] = useState([])
@@ -22,9 +22,9 @@ const ImageGrid = ({setSelectImage}) => {
         {
             docs && docs.map(doc => (
                 <>
-                    <div className='img-wrap' key={doc.id}  onClick={() => setSelectImage(doc.url)}>
-                        <img src={doc.url} alt="yüklenen resim" />
-                    </div>
+                    <motion.div className='img-wrap' key={doc.id}  onClick={() => setSelectImage(doc.url)} layout whileHover={{opacity:1}}>
+                        <motion.img src={doc.url} alt="yüklenen resim" initial={{opacity:0}} animate={{opacity:1}} transition={{delay:1}}/>
+                    </motion.div>
                 </>
             ))
         }
