@@ -1,26 +1,65 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+
+:root{
+  --primary:#6c5ce7;
+  --secondary:#4b4b4b;
+  --error:#e17055;
+}
+body{
+ font-family: 'Ubuntu' ,sans-serif;
+ color:var(--secondary)
+}
+.App{
+  max-width: 960px;
+  margin: 0 auto;
+}
+.title h1{
+  color: var(--primary);
+  font-size:1.2rem;
+  letter-spacing: 2px;
+  font-weight: normal;
+}
+.title h2, .title p {
+  text-align: center;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.title h2{
+  margin-top: 60px;
+  font-size: 2.6rem;
 }
 
-* {
-  box-sizing: border-box;
+form{
+  margin:30px auto 10px;
+  text-align: center;
 }
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+label input{
+  height: 0;
+  width: 0;
+  opacity: 0;
+}
+label span{
+  margin-left:-4px;
+}
+label{
+  display:block;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--primary);
+  border-radius: 50%;
+  margin:10px auto;
+  line-height:30px;
+  color:var(--primary);
+  font-weight: bold;
+  font-size:24px;
+}
+label:hover{
+  background-color: var(--primary);
+  color:#fff
+}
+.output{
+  height: 60px;
+  font-size:0.8rem;
+}
+.error{
+  color:var(--error)
 }
