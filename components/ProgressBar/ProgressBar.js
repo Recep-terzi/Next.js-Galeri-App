@@ -1,7 +1,7 @@
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import React, { useEffect, useState } from 'react'
-import {storage} from '../../firebase/index'
-
+import {storage,db} from '../../firebase/index'
 const ProgressBar = ({file,setFile}) => {
 
     const [progress,setProgress] = useState(0)
@@ -10,6 +10,7 @@ const ProgressBar = ({file,setFile}) => {
     const [url,setUrl] = useState(null)
 
     useEffect(() => {
+        const collectionRef = collection(db,'images')
         const storageRef = ref(storage,file.name)
         const uploadTask = uploadBytesResumable(storageRef, file)
         uploadTask.on('state_changed',(snap) => {
@@ -25,6 +26,9 @@ const ProgressBar = ({file,setFile}) => {
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                 if(!cancel){
                     setUrl(downloadURL)
+                    if(url != null){
+                        addDoc(collectionRef,{url:url,tarih:serverTimestamp()})
+                    }
                 }
             })
         })
